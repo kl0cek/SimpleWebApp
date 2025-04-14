@@ -1,4 +1,4 @@
-export default function generateFood(snake, boardSize){
+export function generateFood(snake, boardSize){
     let food;
     do {
         food = [
@@ -14,7 +14,7 @@ export default function generateFood(snake, boardSize){
     
 }
 
-export default function moveSnake(snake, direction, boardSize){
+export function moveSnake(snake, direction, boardSize){
     const head = snake[0];
     const newHead = [(head[0] + direction[0] + boardSize) % boardSize , (head[1] + direction[1] + boardSize) % boardSize];
 
@@ -23,13 +23,13 @@ export default function moveSnake(snake, direction, boardSize){
     return newSnake;
 }
 
-export default function isCollision(snake){
+export function isCollision(snake){
     const [head, ...body] = snake;
 
     return body.some(([y, x]) => y === head[0] && x === head[1]);  
 }
 
-export default function eatFood(snake, food) {
+export function eatFood(snake, food) {
   const head = snake[0];
   return head[0] === food[0] && head[1] === food[1];
 }
