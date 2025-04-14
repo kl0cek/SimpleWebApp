@@ -40,7 +40,7 @@ function drawBoard() {
 
         }
     }
-    scoreDisplay.textContent = `Your score: ${score}`;
+    scoreDisplay.textContent = `$core: ${score}`;
 }
 
 function updateGame(){

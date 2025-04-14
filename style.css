@@ -8,6 +8,46 @@ body {
     
 }
 
+.container {
+    display: flex;
+    min-height: 10px;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #222;
+    color: white;
+    padding: 20px;
+}
+
+.sidebar h2 {
+    margin-top: 0;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin: 10px 0;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    text-decoration: underline;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    text-align: center;
+}
+
 #game-board {
     display: grid;
     grid-template-columns: repeat(20, 20px);
@@ -31,6 +71,11 @@ body {
 }
 
 #score {
+    text-align: center;
     font-size: 1.2em;
     margin-top: 10px;
+  }
+
+  footer {
+    text-align: center;
   }
