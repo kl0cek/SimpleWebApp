@@ -15,6 +15,7 @@ export function generateFood(snake, boardSize){
 }
 
 export function moveSnake(snake, direction, boardSize){
+    //console.log(direction);
     const head = snake[0];
     const newHead = [(head[0] + direction[0] + boardSize) % boardSize , (head[1] + direction[1] + boardSize) % boardSize];
 

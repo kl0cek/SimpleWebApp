@@ -79,3 +79,23 @@ body {
   footer {
     text-align: center;
   }
+  
+  #scoreboard {
+    margin-top: 10px;
+  }
+  
+  #restart-btn {
+    margin-top: 10px;
+    padding: 5px 15px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    background-color: #333;
+    color: white;
+  }
+  
+  #restart-btn:hover {
+    background-color: #444;
+  }
+  

@@ -8,12 +8,36 @@ import {
 const board = document.getElementById('game-board');
 const boardSize = 20;
 const scoreDisplay = document.getElementById('score');
+const highScoreDisplay = document.getElementById('high-score');
+const restart = document.getElementById('restart');
 
+//weird weird 
 let snake = [[10, 10]];
 let direction = [0,1];
 let food = generateFood(snake, boardSize);
 let score = 0;
 let gameOver = false;
+let interval;
+let highScore = localStorage.getItem('highScore') || 0;
+
+
+function initGame() {
+    // plan byl dobry ale cos nie pyklo
+    // let snake = [[10, 10]];
+    // let direction = [0,1];
+    // let food = generateFood(snake, boardSize);
+    // let score = 0;
+    // let gameOver = false;
+    updateGame();
+    drawBoard();
+    clearInterval(interval);
+    interval = setInterval(updateGame, 200);
+}
+
+function updateScore(){
+    scoreDisplay.textContent = `Score: ${score}`;
+    highScoreDisplay.textContent = `High Score: ${highScore}`;
+}
 
 
 function drawBoard() {
@@ -40,7 +64,6 @@ function drawBoard() {
 
         }
     }
-    scoreDisplay.textContent = `$core: ${score}`;
 }
 
 function updateGame(){
@@ -50,20 +73,24 @@ function updateGame(){
 
     if(isCollision(snake)){
         alert("Pozdr pocwicz");
+        clearInterval(interval);
         gameOver = true;
         return;
     }
 
     if(eatFood(snake, food)){
         score++;
+        if(score > highScore){
+            highScore = score;
+            localStorage.setItem('highScore', highScore);
+        }
         snake.push(snake[snake.length - 1 ]);
         food = generateFood(snake, boardSize);
     }   
-
+    updateScore();
     drawBoard();
 }
 
-setInterval(updateGame, 200);
 
 document.addEventListener('keydown', (e) => {
     switch (e.key){
@@ -74,4 +101,6 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-drawBoard();
+restart.addEventListener('click', initGame);
+
+initGame();
