@@ -29,3 +29,8 @@ body {
 .food {
     background-color: red;
 }
+
+#score {
+    font-size: 1.2em;
+    margin-top: 10px;
+  }
