@@ -9,26 +9,22 @@ const board = document.getElementById('game-board');
 const boardSize = 20;
 const scoreDisplay = document.getElementById('score');
 const highScoreDisplay = document.getElementById('high-score');
-const restart = document.getElementById('restart');
+const restartBtn = document.getElementById('restart');
 
-//weird weird 
-let snake = [[10, 10]];
-let direction = [0,1];
-let food = generateFood(snake, boardSize);
-let score = 0;
-let gameOver = false;
-let interval;
+
+let snake, direction, food, score, gameOver, interval;
 let highScore = localStorage.getItem('highScore') || 0;
 
 
 function initGame() {
     // plan byl dobry ale cos nie pyklo
-    // let snake = [[10, 10]];
-    // let direction = [0,1];
-    // let food = generateFood(snake, boardSize);
-    // let score = 0;
-    // let gameOver = false;
-    updateGame();
+    snake = [[10, 10]];
+    direction = [0,1];
+    food = generateFood(snake, boardSize);
+    score = 0;
+    gameOver = false;
+    //updateGame();
+    updateScore();
     drawBoard();
     clearInterval(interval);
     interval = setInterval(updateGame, 200);
@@ -94,13 +90,13 @@ function updateGame(){
 
 document.addEventListener('keydown', (e) => {
     switch (e.key){
-        case 'ArrowUp' : if (direction[0] !== 1) direction = [-1,0]; break;
-        case 'ArrowDown' : if (direction[0] !== -1) direction = [1,0]; break;
-        case 'ArrowLeft' : if (direction[1] !== 1) direction = [0,-1]; break;
-        case 'ArrowRight' : if (direction[1] !== -1) direction = [0,1]; break;
+        case 'w' : if (direction[0] !== 1) direction = [-1,0]; break;
+        case 's' : if (direction[0] !== -1) direction = [1,0]; break;
+        case 'a' : if (direction[1] !== 1) direction = [0,-1]; break;
+        case 'd' : if (direction[1] !== -1) direction = [0,1]; break;
     }
 });
 
-restart.addEventListener('click', initGame);
-
+restartBtn.addEventListener('click', initGame);
+console.log(restartBtn);
 initGame();
