@@ -48,6 +48,21 @@ body {
     text-align: center;
 }
 
+.hidden {
+    display: none;
+    opacity: 0;
+}
+
+.fade-in {
+    animation: fadeIn 0,5s ease forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
 #game-board {
     display: grid;
     grid-template-columns: repeat(20, 20px);

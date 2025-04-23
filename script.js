@@ -17,13 +17,12 @@ let highScore = localStorage.getItem('highScore') || 0;
 
 
 function initGame() {
-    // plan byl dobry ale cos nie pyklo
     snake = [[10, 10]];
     direction = [0,1];
     food = generateFood(snake, boardSize);
     score = 0;
     gameOver = false;
-    //updateGame();
+
     updateScore();
     drawBoard();
     clearInterval(interval);
@@ -56,7 +55,6 @@ function drawBoard() {
         
             board.appendChild(cell);
             
-            //console.log("board");
 
         }
     }
@@ -99,4 +97,33 @@ document.addEventListener('keydown', (e) => {
 
 restartBtn.addEventListener('click', initGame);
 console.log(restartBtn);
-initGame();
+
+//initGame();
+
+document.querySelectorAll('.sidebar a').forEach(link=>{
+    link.addEventListener('click', (e) =>{
+        e.preventDefault();
+
+        const gameName = link.dataset.game;
+        document.querySelectorAll('.game-section').forEach(section=>{
+            section.classList.add('hidden');
+        })
+
+        const section = document.getElementById(`game-${gameName}`);
+        section.classList.remove('hidden');
+        section.classList.add('fade-in');
+
+        if(gameName === 'snake' && !interval){
+            initGame();
+        }
+
+        document.getElementById('sidebar').addEventListener('click', () => {
+            document.querySelectorAll('.game-section').forEach(section => {
+              section.classList.add('hidden');
+              section.classList.remove('fade-in');
+            });
+          });
+          
+
+    })
+})

@@ -10,22 +10,25 @@
     <body>
         <div class="container">
             <nav class="sidebar">
-                <h2>SIDEBAR</h2>
+                <h2 id="sidebar">SIDEBAR</h2>
                 <ul>
-                    <li> <a href="#">Snake</a></li>
-                    <li> <a href="#">2</a></li>
-                    <li> <a href="#">3</a></li>
+                    <li> <a href="#" data-game="snake">Snake</a></li>
+                    <li> <a href="#" data-game="game2">2</a></li>
+                    <li> <a href="#" data-game="game3">3</a></li>
                 </ul>
             </nav>
-            <main class="main-container">
-                <h1>SNAKE</h1>
-                <div id="game-board"></div>
 
-                <div id="scoreboard">
-                    <button id="restart">Restart</button>
-                    <div id="score">Score: 0</div>
-                    <div id="high-score"> High Score: 0 </div>
+            <main class="main-container">
+                <div id="game-snake" class ="game-section hidden">
+                    <h1>SNAKE</h1>
+                    <div id="game-board"></div>
+
+                    <div id="scoreboard">
+                       <button id="restart">Restart</button>
+                       <div id="score">Score: 0</div>
+                       <div id="high-score"> High Score: 0 </div>
                     
+                    </div>
                 </div>
             </main>
         
