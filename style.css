@@ -14,11 +14,27 @@ body {
 }
 
 .sidebar {
-    width: 200px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px; 
+    height: 100vh;
     background-color: #222;
-    color: white;
-    padding: 20px;
+    color: #fff;
+    padding: 1rem;
+    box-sizing: border-box;
+    overflow-y: auto; 
+    z-index: 1000; 
 }
+
+.sidebar-footer {
+    text-align: center;
+    font-size: 0.75rem;
+    color: #aaa;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #444;
+  }
 
 .sidebar h2 {
     margin-top: 0;
@@ -34,12 +50,19 @@ body {
 }
 
 .sidebar a {
-    color: white;
+    display: block;
+    color: #ccc;
     text-decoration: none;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: background 0.2s;
 }
 
 .sidebar a:hover {
     text-decoration: underline;
+    background-color: #444;
+    color: #fff;
 }
 
 .main-content {
@@ -118,10 +141,6 @@ body {
     text-align: center;
     font-size: 1.2em;
     margin-top: 10px;
-  }
-
-  footer {
-    text-align: center;
   }
   
   #scoreboard {

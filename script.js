@@ -139,6 +139,7 @@ document.getElementById('sidebar').addEventListener('click', () => {
 
       section.addEventListener('animationend', function handler() {
         section.classList.add('hidden');
+        gameOver = true; 
         section.classList.remove('slide-out');
         section.removeEventListener('animationend', handler);
       });
