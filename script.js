@@ -100,30 +100,48 @@ console.log(restartBtn);
 
 //initGame();
 
-document.querySelectorAll('.sidebar a').forEach(link=>{
-    link.addEventListener('click', (e) =>{
-        e.preventDefault();
+const gameSections = document.querySelectorAll('.game-section');
 
-        const gameName = link.dataset.game;
-        document.querySelectorAll('.game-section').forEach(section=>{
-            section.classList.add('hidden');
-        })
+// Kliknięcia w linki w sidebarze
+document.querySelectorAll('.sidebar a').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
 
-        const section = document.getElementById(`game-${gameName}`);
-        section.classList.remove('hidden');
-        section.classList.add('fade-in');
+    const gameName = link.dataset.game;
 
-        if(gameName === 'snake' && !interval){
-            initGame();
-        }
+    
+    gameSections.forEach(section => {
+      section.classList.add('hidden');
+      section.classList.remove('slide-in', 'slide-out');
+    });
 
-        document.getElementById('sidebar').addEventListener('click', () => {
-            document.querySelectorAll('.game-section').forEach(section => {
-              section.classList.add('hidden');
-              section.classList.remove('fade-in');
-            });
-          });
-          
+    
+    const targetSection = document.getElementById(`game-${gameName}`);
+    if (targetSection) {
+      targetSection.classList.remove('hidden');
+      targetSection.classList.add('slide-in');
 
-    })
-})
+      if (gameName === 'snake') {
+        setTimeout(()=>{
+            initGame(); 
+        }, 1400);
+        
+      }
+    }
+  });
+});
+
+document.getElementById('sidebar').addEventListener('click', () => {
+  gameSections.forEach(section => {
+    if (!section.classList.contains('hidden')) {
+      section.classList.remove('slide-in');
+      section.classList.add('slide-out');
+
+      section.addEventListener('animationend', function handler() {
+        section.classList.add('hidden');
+        section.classList.remove('slide-out');
+        section.removeEventListener('animationend', handler);
+      });
+    }
+  });
+});
