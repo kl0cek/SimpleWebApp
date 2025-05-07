@@ -11,6 +11,8 @@ body {
 .container {
     display: flex;
     min-height: 10px;
+    flex-direction: column;
+    align-items: center;
 }
 
 .sidebar {
@@ -65,15 +67,101 @@ body {
     color: #fff;
 }
 
+.dificulty {
+    width: 250px;
+    height: auto;
+    background-color: #222;
+    color: #fff;
+    padding: 1rem;
+    box-sizing: border-box;
+    border-radius: 6px;
+    margin: 50px auto 0;
+    display: none;
+}
+
+.dificulty.active {
+    display: block;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.dificulty h2 {
+    margin-top: 0;
+    text-align: center;
+}
+
+.dificulty ul {
+    list-style: none;
+    padding: 0;
+}
+
+.dificulty li {
+    margin: 10px 0;
+}
+
+.dificulty a {
+    display: block;
+    color: #ccc;
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: background 0.2s;
+    text-align: center;
+}
+
+.dificulty a:hover {
+    text-decoration: underline;
+    background-color: #444;
+    color: #fff;
+}
+
 .main-content {
     flex-grow: 1;
     padding: 20px;
     text-align: center;
 }
 
+.main-container {
+    margin-left: 220px; 
+    padding: 20px;
+    width: calc(100% - 220px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .hidden {
     display: none;
     opacity: 0;
+}
+
+.hiddenSnakeGame {
+    display: none;
+    opacity: 0;
+}
+
+.hiddenSnakeDificulty {
+    display: none;
+    opacity: 0;
+}
+
+.slide-out {
+    animation: slideOut 1.5s ease forwards;
+}
+
+@keyframes slideOut {
+    100% {
+        transform: translateX(100%);
+        opacity: 1;
+    }
+    50% {
+        transform: translateX(50%);
+        opacity: 0.5;
+    }
+    0% {
+        transform: translateX(0);
+        opacity: 0;
+    }
 }
 
 .slide-in {
@@ -96,22 +184,25 @@ body {
   }
   
 
-.slide-out {
-    animation: slideOut 1.5s ease forwards;
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-@keyframes slideOut {
-    100% {
-        transform: translateX(100%);
-        opacity: 1;
-    }
-    50% {
-        transform: translateX(50%);
-        opacity: 0,5;
-    }
+@keyframes fadeOut {
     0% {
-        transform: translateX(0);
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
         opacity: 0;
+        transform: translateY(-20px);
     }
 }
 
@@ -161,4 +252,3 @@ body {
   #restart-btn:hover {
     background-color: #444;
   }
-  
