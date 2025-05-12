@@ -25,7 +25,7 @@ export function moveSnake(snake, direction, boardSize, canPassWalls){
         if (newHead[0] < 0 || newHead[0] >= boardSize || 
             newHead[1] < 0 || newHead[1] >= boardSize) {
 
-            return null;
+            return null, alert("bardzo sie starałes, lecz z gry wyleciałeś");
         }
     }
 

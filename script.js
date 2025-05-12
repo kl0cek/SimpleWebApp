@@ -63,7 +63,7 @@ function updateGame(){
 
   snake = moveSnake(snake, direction, boardSize, canPassWalls);
 
-  if(isCollision(snake,  !canPassWalls, boardSize)){
+  if(isCollision(snake, !canPassWalls, boardSize)){
       alert("Pozdr pocwicz");
       clearInterval(interval);
       gameOver = true;
