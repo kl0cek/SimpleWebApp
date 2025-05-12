@@ -13,13 +13,14 @@ body {
     min-height: 10px;
     flex-direction: column;
     align-items: center;
+    width: 82%;
 }
 
 .sidebar {
     position: fixed;
     top: 0;
     left: 0;
-    width: 200px; 
+    width: 18%; 
     height: 100vh;
     background-color: #222;
     color: #fff;
@@ -40,6 +41,10 @@ body {
 
 .sidebar h2 {
     margin-top: 0;
+}
+
+.sidebar h2:hover {
+    text-decoration: underline;
 }
 
 .sidebar ul {
@@ -65,7 +70,7 @@ body {
     text-decoration: underline;
     background-color: #444;
     color: #fff;
-}
+}  
 
 .dificulty {
     width: 250px;

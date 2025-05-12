@@ -2,7 +2,8 @@ import {
   generateFood, 
   moveSnake, 
   isCollision, 
-  eatFood 
+  eatFood,
+  isWallCollision 
 } from './snake-logic.js';
 
 const board = document.getElementById('game-board');
@@ -15,6 +16,7 @@ const difficultyPanel = document.querySelector('.dificulty');
 let snake, direction, food, score, gameOver, interval;
 let highScore = localStorage.getItem('highScore') || 0;
 let gameSpeed = 200; 
+let canPassWalls = true; 
 
 function initGame() {
   snake = [[10, 10]];
@@ -59,9 +61,9 @@ function drawBoard() {
 function updateGame(){
   if(gameOver) return;
 
-  snake = moveSnake(snake, direction, boardSize);
+  snake = moveSnake(snake, direction, boardSize, canPassWalls);
 
-  if(isCollision(snake)){
+  if(isCollision(snake,  !canPassWalls, boardSize)){
       alert("Pozdr pocwicz");
       clearInterval(interval);
       gameOver = true;
@@ -94,22 +96,26 @@ restartBtn.addEventListener('click', initGame);
 
 const gameSections = document.querySelectorAll('.game-section');
 
+// Kliknięcia w linki w sidebarze
 document.querySelectorAll('.sidebar a').forEach(link => {
 link.addEventListener('click', (e) => {
   e.preventDefault();
 
   const gameName = link.dataset.game;
   
+  // Ukryj wszystkie sekcje gier
   gameSections.forEach(section => {
     section.classList.add('hiddenSnakeGame');
     section.classList.remove('slide-in', 'slide-out');
   });
   
+  // Pokaż panel wyboru trudności tylko dla Snake
   if (gameName === 'snake') {
     difficultyPanel.classList.add('active');
   } else {
     difficultyPanel.classList.remove('active');
     
+    // Dla innych gier pokazuj bezpośrednio sekcję gry
     const targetSection = document.getElementById(`game-${gameName}`);
     if (targetSection) {
       targetSection.classList.remove('hiddenSnakeGame');
@@ -127,8 +133,10 @@ difficultyLink.addEventListener('click', (e) => {
   
   if (difficulty === 'easy') {
     gameSpeed = 200; 
+    canPassWalls = true; 
   } else if (difficulty === 'hard') {
     gameSpeed = 100; 
+    canPassWalls = false; 
   }
   
   difficultyPanel.classList.remove('active');
