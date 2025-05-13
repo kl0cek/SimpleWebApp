@@ -1,0 +1,99 @@
+/* Główny kontener gry */
+#game-board-Trex {
+  position: relative;
+  width: 600px;
+  height: 200px;
+  border: 1px solid #333;
+  margin: 0 auto;
+  background-color: #f7f7f7;
+  overflow: hidden;
+}
+
+/* Kontener do pozycjonowania elementów */
+.grid {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #f7f7f7;
+  border-bottom: 2px solid #333;
+}
+
+/* Styl dla dinozaura */
+.dino {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  bottom: 0;
+  left: 50px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M20,60 L20,90 L30,90 L30,70 L40,70 L40,90 L80,90 L80,60 L60,40 L60,20 L50,20 L50,30 L40,30 L40,40 L30,40 L30,60 Z" fill="%23535353"/></svg>');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/* Styl dla przeszkód */
+.obstacle {
+  position: absolute;
+  width: 20px;
+  height: 40px;
+  bottom: 0;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M20,20 L20,90 L80,90 L80,20 L60,40 L40,40 Z" fill="%23535353"/></svg>');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/* Alert Game Over */
+#alert {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+  font-weight: bold;
+  color: #ff0000;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+/* Styl dla wyników */
+#game-Trex #scoreboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+#game-Trex #score,
+#game-Trex #high-score {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Animacja dla dinozaura podczas skoku */
+@keyframes jump {
+  0% { bottom: 0; }
+  50% { bottom: 100px; }
+  100% { bottom: 0; }
+}
+
+/* Animacja dla przeszkód */
+@keyframes moveLeft {
+  from { left: 600px; }
+  to { left: -50px; }
+}
+
+/* Dodatkowe style dla przycisków startowych i resetowania */
+#game-Trex button {
+  padding: 8px 20px;
+  font-size: 16px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+#game-Trex button:hover {
+  background-color: #555;
+}
