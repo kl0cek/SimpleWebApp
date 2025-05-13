@@ -5,6 +5,7 @@
         <meta meta="viewport" content="width=device-width, initial-scale=1.0" />
         <title> WEBGAMES PROJECT </title>
         <link rel="stylesheet" href="./style.css" />
+        <link rel="stylesheet" href="./styleTikTacToe.css" />
 
     </head>
     <body>
@@ -13,7 +14,7 @@
                 <h2 id="sidebar"><a href="#"> SIDEBAR </a></h2>
                 <ul>
                     <li> <a href="#" data-game="snake"> Snake </a></li>
-                    <li> <a href="#" data-game="game2"> 2 </a></li>
+                    <li> <a href="#" data-game="TikTacToe"> Tik-Tac-Toe </a></li>
                     <li> <a href="#" data-game="game3"> 3 </a></li>
                 </ul>
             </nav>
@@ -36,6 +37,15 @@
                        <div id="score">Score: 0</div>
                        <div id="high-score"> High Score: 0 </div>
                     
+                    </div>
+                </div>
+
+                <div id="game-TikTacToe" class="game-section hiddenSnakeGame">
+                    <h1>Tic-Tac-Toe</h1>
+                    <div id="game-board-TikTacToe"></div>
+
+                    <div id="scoreboardTikTacToe">
+                        <button id="restart">Restart</button>
                     </div>
                 </div>
             </main>

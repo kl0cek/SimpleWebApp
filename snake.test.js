@@ -3,7 +3,7 @@ const {
     moveSnake,
     isCollision,
     eatFood,
-} = require('./snake-logic');
+} = require('./snakeLogic');
 
 describe('Snake logic', () => {
     test('generateFood returns non-overlapping food', () => {
