@@ -1,5 +1,8 @@
 import { checkWinner, getRandomMove, getBestMove } from './TikTacToeLogic.js';
 
+const XscoreDisplay = document.getElementById('Xscore');
+const OscoreDisplay = document.getElementById('Oscore');
+
 let gameBoardElement;
 let restartBtnTicTacToe;
 let statusDisplay;
@@ -8,6 +11,9 @@ let currentPlayer;
 let gameActive;
 let gameMode;
 let aiPlayer;
+let playerScore = 0;
+let aiScore = 0;
+
 
 export function initTicTacToeGame() {
   // Poczekaj aż DOM będzie w pełni załadowany
@@ -182,7 +188,17 @@ function handleGameEnd(result) {
   if (result === 'tie') {
     statusDisplay.textContent = 'Remis!';
   } else {
+    
+    //console.log(playerScore);
     statusDisplay.textContent = `Gracz ${result} wygrywa!`;
+    if(result === 'X'){
+      playerScore++;
+    } else if (result === 'Osp'){
+      aiScore++;
+    }
+    XscoreDisplay.textContent = `Player Score: ${playerScore}`;
+    OscoreDisplay.textContent = `Ai Score: ${aiScore}`;
+
   }
 }
 
