@@ -1,12 +1,8 @@
-// Plik z implementacją gry kółko i krzyżyk
 import { checkWinner, getRandomMove, getBestMove } from './TikTacToeLogic.js';
 
-const gameBoardElement = document.getElementById('game-board-TikTacToe');
-const restartBtnTicTacToe = document.querySelector('#TikTacToe #restart');
-const statusDisplay = document.createElement('div');
-statusDisplay.id = 'status';
-document.getElementById('scoreboardTikTacToe').prepend(statusDisplay);
-
+let gameBoardElement;
+let restartBtnTicTacToe;
+let statusDisplay;
 let gameBoard;
 let currentPlayer;
 let gameActive;
@@ -14,13 +10,35 @@ let gameMode;
 let aiPlayer;
 
 export function initTicTacToeGame() {
-  // Dodanie przycisków wyboru trybu gry
-  createModeSelectionButtons();
-  
-  // Inicjalizacja przycisków i eventListenerów
-  if (restartBtnTicTacToe) {
-    restartBtnTicTacToe.addEventListener('click', restartGame);
-  }
+  // Poczekaj aż DOM będzie w pełni załadowany
+  setTimeout(() => {
+    // Pobierz referencje do elementów DOM
+    gameBoardElement = document.getElementById('game-board-TikTacToe');
+    restartBtnTicTacToe = document.querySelector('#game-TikTacToe #restart');
+    
+    // Sprawdź czy elementy istnieją
+    if (!gameBoardElement) {
+      console.error('Nie znaleziono elementu game-board-TikTacToe');
+      return;
+    }
+    
+    if (!restartBtnTicTacToe) {
+      console.error('Nie znaleziono przycisku restart dla gry kółko i krzyżyk');
+    } else {
+      restartBtnTicTacToe.addEventListener('click', restartGame);
+    }
+    
+    // Stwórz element statusu gry
+    const scoreboardElement = document.getElementById('scoreboardTikTacToe');
+    if (scoreboardElement) {
+      statusDisplay = document.createElement('div');
+      statusDisplay.id = 'status';
+      scoreboardElement.prepend(statusDisplay);
+    }
+    
+    // Dodanie przycisków wyboru trybu gry
+    createModeSelectionButtons();
+  }, 100);
 }
 
 function createModeSelectionButtons() {
@@ -46,8 +64,12 @@ function createModeSelectionButtons() {
   modeContainer.appendChild(vsEasyAIBtn);
   modeContainer.appendChild(vsHardAIBtn);
   
-  const tictactoeContainer = document.getElementById('TikTacToe');
-  tictactoeContainer.insertBefore(modeContainer, gameBoardElement);
+  const tictactoeContainer = document.getElementById('game-TikTacToe');
+  if (tictactoeContainer && gameBoardElement) {
+    tictactoeContainer.insertBefore(modeContainer, gameBoardElement);
+  } else {
+    console.error('Nie można znaleźć elementów potrzebnych do wstawienia przycisków trybu gry');
+  }
 }
 
 function startGameWithMode(mode) {
@@ -79,6 +101,11 @@ function initGame() {
 }
 
 function renderBoard() {
+  if (!gameBoardElement) {
+    console.error('Nie można renderować planszy - brak elementu DOM');
+    return;
+  }
+
   gameBoardElement.innerHTML = '';
   
   for (let i = 0; i < 3; i++) {
@@ -105,10 +132,10 @@ function handleCellClick(event) {
   const row = parseInt(event.target.dataset.row);
   const col = parseInt(event.target.dataset.col);
   
-  // Sprawdź czy pole jest puste
+  
   if (gameBoard[row][col] !== '') return;
   
-  // Wykonaj ruch
+  
   makeMove(row, col);
 }
 
@@ -116,18 +143,18 @@ function makeMove(row, col) {
   gameBoard[row][col] = currentPlayer;
   renderBoard();
   
-  // Sprawdź czy gra się zakończyła
+  
   const winner = checkWinner(gameBoard);
   if (winner) {
     handleGameEnd(winner);
     return;
   }
   
-  // Zmień gracza
+  
   currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
   updateStatusDisplay();
   
-  // Jeśli gra z AI i jest kolej AI
+  
   if (gameMode !== 'player' && currentPlayer === aiPlayer && gameActive) {
     setTimeout(makeAIMove, 500);
   }
@@ -169,11 +196,12 @@ function restartGame() {
   if (gameMode) {
     startGameWithMode(gameMode);
   } else {
-    // Domyślnie rozpocznij grę w trybie dla dwóch graczy
     startGameWithMode('player');
   }
 }
 
 export function stopTicTacToeGame() {
-  gameActive = false;
+  if (typeof gameActive !== 'undefined') {
+    gameActive = false;
+  }
 }

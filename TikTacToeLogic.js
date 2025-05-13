@@ -69,7 +69,7 @@ export function getRandomMove(board) {
 }
 
 export function getBestMove(board, player) {
-  // Implementacja algorytmu minimax dla AI
+  
   const opponent = player === 'X' ? 'O' : 'X';
   
   // Sprawdź czy można wygrać w następnym ruchu
