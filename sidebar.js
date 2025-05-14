@@ -1,6 +1,7 @@
 // Plik z logiką sidebara i nawigacji
 import { initGame, setGameDifficulty, stopGame } from './snakeGame.js';
 import { stopTicTacToeGame } from './TikTacToeGame.js';
+import { } from './Trex.js';
 
 const gameSections = document.querySelectorAll('.game-section');
 const difficultyPanel = document.querySelector('.dificulty');
