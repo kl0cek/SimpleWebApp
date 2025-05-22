@@ -4,7 +4,7 @@ import {
   isCollision, 
   eatFood,
   isWallCollision 
-} from './snakeLogic.js';
+} from './logic/snakeLogic.js';
 
 const board = document.getElementById('game-board');
 const boardSize = 20;

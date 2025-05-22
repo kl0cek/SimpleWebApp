@@ -1,4 +1,4 @@
-import { checkWinner, getRandomMove, getBestMove } from './TikTacToeLogic.js';
+import { checkWinner, getRandomMove, getBestMove } from './logic/TikTacToeLogic.js';
 
 const XscoreDisplay = document.getElementById('Xscore');
 const OscoreDisplay = document.getElementById('Oscore');
