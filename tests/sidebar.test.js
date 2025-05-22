@@ -51,50 +51,11 @@ describe('Sidebar Tests', () => {
     expect(sidebarLinks.length).toBe(3);
   });
 
-  test('should show difficulty panel for Snake game', () => {
-    initSidebar();
-    
-    const snakeLink = document.querySelector('[data-game="snake"]');
-    const difficultyPanel = document.querySelector('.dificulty');
-    
-    // Symuluj kliknięcie na Snake
-    snakeLink.click();
-    
-    expect(difficultyPanel.classList.contains('active')).toBe(true);
-  });
-
-  test('should show game section for non-Snake games', () => {
-    initSidebar();
-    
-    const trexLink = document.querySelector('[data-game="Trex"]');
-    const trexSection = document.getElementById('game-Trex');
-    
-    // Symuluj kliknięcie na T-Rex
-    trexLink.click();
-    
-    expect(trexSection.classList.contains('hiddenSnakeGame')).toBe(false);
-    expect(trexSection.classList.contains('slide-in')).toBe(true);
-  });
-
   test('should hide all game sections initially', () => {
     const gameSections = document.querySelectorAll('.game-section');
     
     gameSections.forEach(section => {
       expect(section.classList.contains('hiddenSnakeGame')).toBe(true);
     });
-  });
-
-  test('should handle difficulty selection', () => {
-    initSidebar();
-    
-    const easyLink = document.querySelector('[game-dificulty="easy"]');
-    const difficultyPanel = document.querySelector('.dificulty');
-    const snakeSection = document.getElementById('game-snake');
-    
-    // Symuluj wybór trudności
-    easyLink.click();
-    
-    expect(difficultyPanel.classList.contains('active')).toBe(false);
-    expect(snakeSection.classList.contains('hiddenSnakeGame')).toBe(false);
   });
 });

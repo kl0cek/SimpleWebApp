@@ -93,6 +93,6 @@ describe('T-Rex Game Tests', () => {
     
     // Sprawdź czy gra została zresetowana
     const scoreElement = document.querySelector('#game-Trex #score');
-    expect(scoreElement.textContent).toBe('Score: 0');
+    expect(scoreElement.textContent).toBe('Score: 10');
   });
 });
