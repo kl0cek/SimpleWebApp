@@ -51,7 +51,6 @@ function startTrexGame() {
   let score = 0;
   let scoreInterval;
   
-  // Funkcja do obsługi skoku
   function control(e) {
     if (e.code === "Space" || e.key === " ") {
       if (!isJumping) {
@@ -61,7 +60,6 @@ function startTrexGame() {
   }
   document.addEventListener('keydown', control);
   
-  // Funkcja do aktualizacji wyniku
   function updateScore() {
     score++;
     if (scoreElement) {
@@ -75,7 +73,6 @@ function startTrexGame() {
     isJumping = true;
     let count = 0;
     let timerId = setInterval(function() {
-      // Ruch w górę
       if (count === 15) {
         clearInterval(timerId);
         let downTimerId = setInterval(function() {
@@ -90,7 +87,7 @@ function startTrexGame() {
         }, 20);
       }
       
-      // Ruch w górę
+      
       position += 20;
       count++;
       position = position * gravity;
@@ -98,7 +95,6 @@ function startTrexGame() {
     }, 20);
   }
   
-  // Funkcja generowania przeszkód
   function generateObstacles() {
     if (!isGameOver) {
       let randomTime = Math.random() * 4000;
@@ -114,7 +110,6 @@ function startTrexGame() {
           if (alert) alert.innerHTML = 'Game Over';
           isGameOver = true;
           
-          // Zapisz najlepszy wynik
           const highScore = localStorage.getItem('trexHighScore') || 0;
           if (score > highScore) {
             localStorage.setItem('trexHighScore', score);
@@ -124,19 +119,15 @@ function startTrexGame() {
             }
           }
           
-          // Zatrzymaj licznik wyniku
           clearInterval(scoreInterval);
           
-          // Usuń wszystkie dzieci
           while (grid.firstChild) {
             grid.removeChild(grid.lastChild);
           }
           
-          // Dodaj przycisk restart
           const restartBtn = document.createElement('button');
           restartBtn.textContent = 'Restart';
           restartBtn.addEventListener('click', function() {
-            // Usuń przycisk restart i ponownie zainicjuj grę
             restartBtn.remove();
             document.removeEventListener('keydown', control);
             initTrexGame();
@@ -147,7 +138,6 @@ function startTrexGame() {
         obstaclePosition -= 10;
         obstacle.style.left = obstaclePosition + 'px';
         
-        // Usuń przeszkodę, gdy wyjdzie poza ekran
         if (obstaclePosition < -20) {
           clearInterval(timerId);
           grid.removeChild(obstacle);
@@ -160,10 +150,8 @@ function startTrexGame() {
     }
   }
   
-  // Rozpocznij generowanie przeszkód
   generateObstacles();
   
-  // Rozpocznij liczenie wyniku
   scoreInterval = setInterval(() => {
     if (!isGameOver) {
       updateScore();
@@ -172,10 +160,8 @@ function startTrexGame() {
 }
 
 export function stopTrexGame() {
-  // Usuń nasłuchiwacz klawiszy
   document.removeEventListener('keydown', (e) => {
     if (e.code === "Space") {
-      // Funkcja obsługi skoku
     }
   });
 

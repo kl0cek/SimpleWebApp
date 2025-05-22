@@ -1,4 +1,3 @@
-// Plik z podstawową logiką gry kółko i krzyżyk
 export function checkWinner(board) {
   // Sprawdzenie wierszy
   for (let i = 0; i < 3; i++) {
@@ -76,13 +75,12 @@ export function getBestMove(board, player) {
   for (let i = 0; i < 3; i++) {
     for (let j = 0; j < 3; j++) {
       if (board[i][j] === '') {
-        // Spróbuj ruch
         board[i][j] = player;
         if (checkWinner(board) === player) {
-          board[i][j] = ''; // Cofnij ruch
+          board[i][j] = '';
           return { row: i, col: j };
         }
-        board[i][j] = ''; // Cofnij ruch
+        board[i][j] = ''; 
       }
     }
   }
@@ -94,20 +92,18 @@ export function getBestMove(board, player) {
         // Sprawdź ruch przeciwnika
         board[i][j] = opponent;
         if (checkWinner(board) === opponent) {
-          board[i][j] = ''; // Cofnij ruch
+          board[i][j] = ''; 
           return { row: i, col: j };
         }
-        board[i][j] = ''; // Cofnij ruch
+        board[i][j] = '';
       }
     }
   }
   
-  // Spróbuj zająć środek
   if (board[1][1] === '') {
     return { row: 1, col: 1 };
   }
   
-  // Spróbuj zająć rogi
   const corners = [
     { row: 0, col: 0 },
     { row: 0, col: 2 },
@@ -124,7 +120,6 @@ export function getBestMove(board, player) {
     return availableCorners[randomIndex];
   }
   
-  // Spróbuj zająć boki
   const sides = [
     { row: 0, col: 1 },
     { row: 1, col: 0 },
